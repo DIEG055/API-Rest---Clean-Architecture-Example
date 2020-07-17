@@ -1,0 +1,16 @@
+{
+  "name": "books-review",
+  "version": "1.0.0",
+  "description": "an Example of an API Rest using Express and implementing Clean Architecture practices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Api",
+    "Rest",
+    "CleanArchitecture"
+  ],
+  "author": "Juan Diego Medina Naranjo",
+  "license": "ISC"
+}
