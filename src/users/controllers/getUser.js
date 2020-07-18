@@ -1,10 +1,8 @@
-module.exports = function makeCreateUser({ addUser }) {
-  return async function createUser(httpRequest) {
+module.exports = function makeGetUserById({ findUserById }) {
+  return async function getUserById(httpRequest) {
     try {
-      const { ...userInfo } = httpRequest.body;
-      const user = await addUser({
-        ...userInfo,
-      });
+      const { id } = httpRequest.params || {};
+      const user = await findUserById(id);
       return {
         headers: {
           "Content-Type": "application/json",
@@ -14,11 +12,21 @@ module.exports = function makeCreateUser({ addUser }) {
         body: {
           ok: true,
           status: 201,
-          message: "User created successfully",
           user,
         },
       };
     } catch (e) {
+      if (e.name === "RangeError") {
+        return {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          statusCode: 404,
+          body: {
+            error: e.message,
+          },
+        };
+      }
       return {
         headers: {
           "Content-Type": "application/json",

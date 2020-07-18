@@ -3,7 +3,7 @@ const makeUser = require("../models/index");
 module.exports = function makeAddUser({ usersDB }) {
   return async function addUser(userInfo) {
     const user = makeUser(userInfo);
-    const alreadyCreated = await usersDB.getByHash({
+    const alreadyCreated = await usersDB.verifyExistentUser({
       email: user.getEmail(),
       username: user.getUsername(),
     });

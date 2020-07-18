@@ -20,7 +20,6 @@ module.exports = function makeExpressCallback(controller) {
         }
         res.type("json");
         const body = {
-          ok: true,
           ...httpResponse.body,
         };
         res.status(httpResponse.statusCode).send(body);
